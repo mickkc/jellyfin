@@ -722,6 +722,18 @@ namespace Emby.Server.Implementations.Dto
         /// <param name="options">The options.</param>
         private void AttachBasicFields(BaseItemDto dto, BaseItem item, BaseItem? owner, DtoOptions options)
         {
+            var streams = item.GetMediaStreams();
+
+            dto.AudioLanguages = streams
+                .Where(stream => stream.Type == MediaStreamType.Audio)
+                .Select(stream => stream.Language)
+                .ToArray();
+
+            dto.SubtitleLanguages = streams
+                .Where(stream => stream.Type == MediaStreamType.Subtitle)
+                .Select(stream => stream.Language)
+                .ToArray();
+
             if (options.ContainsField(ItemFields.DateCreated))
             {
                 dto.DateCreated = item.DateCreated;

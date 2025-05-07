@@ -82,6 +82,10 @@ namespace MediaBrowser.Model.Dto
 
         public bool? HasSubtitles { get; set; }
 
+        public string[] AudioLanguages { get; set; }
+
+        public string[] SubtitleLanguages { get; set; }
+
         public string PreferredMetadataLanguage { get; set; }
 
         public string PreferredMetadataCountryCode { get; set; }
